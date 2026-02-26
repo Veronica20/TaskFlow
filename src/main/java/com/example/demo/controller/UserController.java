@@ -1,15 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.UserRequestDto;
+import com.example.demo.dto.UserCreateRequestDto;
 import com.example.demo.dto.UserResponseDto;
 import com.example.demo.dto.UserUpdateRequestDto;
+import com.example.demo.entity.User;
+import com.example.demo.security.CurrentUser;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Validated
 public class UserController {
 
     private final UserService userService;
@@ -24,26 +30,35 @@ public class UserController {
             produces = "application/json"
     )
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UserResponseDto> saveUser(@Valid @RequestBody UserRequestDto userRequestDto) {
+    public ResponseEntity<UserResponseDto> saveUser(@Valid @RequestBody UserCreateRequestDto userCreateRequestDto) {
 
-       UserResponseDto userResponseDto = userService.saveUser(userRequestDto);
+       UserResponseDto userResponseDto = userService.saveUser(userCreateRequestDto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userResponseDto);
     }
 
-    @PutMapping(
-            value = "/users/{id}",
+    @PatchMapping(
+            value = "/users/{user}",
             consumes = "application/json",
             produces = "application/json"
     )
     public ResponseEntity<UserResponseDto> updateUser(
-            @PathVariable Long id,
+            @PathVariable
+            @CurrentUser User user,
             @RequestBody UserUpdateRequestDto userUpdateRequestDto
     ) {
-        UserResponseDto userResponseDto = userService.updateUser(id, userUpdateRequestDto);
+        UserResponseDto userResponseDto = userService.updateUser(
+                user,
+                userUpdateRequestDto
+        );
 
         return ResponseEntity.ok(userResponseDto);
+    }
+
+    @GetMapping("/users")
+    public Page<UserResponseDto> getUsers(Pageable pageable) {
+        return userService.getUsers(pageable);
     }
 
 }

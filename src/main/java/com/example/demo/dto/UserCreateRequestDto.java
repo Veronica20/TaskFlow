@@ -1,11 +1,10 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Role;
+import com.example.demo.validation.UniqueEmail;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.List;
@@ -13,10 +12,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserRequestDto {
+public class UserCreateRequestDto {
 
     @NotBlank
     @Email
+    @UniqueEmail
     private String email;
 
     @NotBlank
@@ -30,9 +30,12 @@ public class UserRequestDto {
     @NotNull
     private ProfileRequest profile;
 
+
     @Valid
     @Size(min = 1)
+    @NotEmpty
     private List<AddressRequest> addresses;
+
 
     @Valid
     private PreferencesRequest preferences;

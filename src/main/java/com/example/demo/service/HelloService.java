@@ -16,6 +16,6 @@ public class HelloService {
     }
 
     public Optional<User> getGreeting() {
-        return this.userRepository.findById(1L);
+        return this.userRepository.findAll().stream().findFirst();
     }
 }

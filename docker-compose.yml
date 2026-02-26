@@ -31,9 +31,6 @@
 #volumes:
 #  db_data:
 
-
-version: "3.9"
-
 services:
   db:
     image: mysql:8.4.7
