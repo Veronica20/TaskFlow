@@ -7,6 +7,7 @@ import com.example.demo.entity.User;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
@@ -59,6 +60,14 @@ public class UserController {
     @GetMapping("/users")
     public Page<UserResponseDto> getUsers(Pageable pageable) {
         return userService.getUsers(pageable);
+    }
+
+
+    @GetMapping("/users/{user}")
+    public ResponseEntity<UserResponseDto> getUser(@CurrentUser User user) {
+        UserResponseDto userResponseDto = userService.toUserResponse(user);
+
+        return ResponseEntity.ok(userResponseDto);
     }
 
 }

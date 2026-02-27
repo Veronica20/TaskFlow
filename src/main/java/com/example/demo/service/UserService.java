@@ -121,4 +121,8 @@ public class UserService {
         return userRepository.findAll(pageable)
                 .map(userMapper::toResponse);
     }
+
+    public UserResponseDto toUserResponse(User user) {
+        return userMapper.toResponse(user);
+    }
 }
