@@ -12,6 +12,8 @@
 /app/src/main/java/com/example/demo/dto/ProfileRequest.java
 /app/src/main/java/com/example/demo/dto/ProfileResponse.java
 /app/src/main/java/com/example/demo/dto/ProfileUpdateRequest.java
+/app/src/main/java/com/example/demo/dto/TaskCreateRequestDto.java
+/app/src/main/java/com/example/demo/dto/TaskResponseDto.java
 /app/src/main/java/com/example/demo/dto/UserCreateRequestDto.java
 /app/src/main/java/com/example/demo/dto/UserResponseDto.java
 /app/src/main/java/com/example/demo/dto/UserUpdateRequestDto.java
@@ -26,11 +28,14 @@
 /app/src/main/java/com/example/demo/entity/UserProfile.java
 /app/src/main/java/com/example/demo/exception/GlobalExceptionHandler.java
 /app/src/main/java/com/example/demo/exception/UserNotFoundException.java
+/app/src/main/java/com/example/demo/mapper/TaskMapper.java
 /app/src/main/java/com/example/demo/mapper/UserMapper.java
+/app/src/main/java/com/example/demo/repository/TaskRepository.java
 /app/src/main/java/com/example/demo/repository/UserRepository.java
 /app/src/main/java/com/example/demo/security/CurrentUser.java
 /app/src/main/java/com/example/demo/security/CurrentUserResolver.java
 /app/src/main/java/com/example/demo/service/HelloService.java
+/app/src/main/java/com/example/demo/service/TaskService.java
 /app/src/main/java/com/example/demo/service/UserService.java
 /app/src/main/java/com/example/demo/validation/ExistingUserId.java
 /app/src/main/java/com/example/demo/validation/ExistingUserIdValidator.java

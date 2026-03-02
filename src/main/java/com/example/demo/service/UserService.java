@@ -9,14 +9,11 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserAddresses;
 import com.example.demo.entity.UserPreferences;
 import com.example.demo.entity.UserProfile;
-import com.example.demo.exception.UserNotFoundException;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -45,7 +42,7 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
-    public UserResponseDto saveUser(@Valid @RequestBody UserCreateRequestDto userCreateRequestDto) {
+    public UserResponseDto saveUser(UserCreateRequestDto userCreateRequestDto) {
 
         User user = userMapper.toEntity(userCreateRequestDto);
 
