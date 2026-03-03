@@ -9,6 +9,8 @@ import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity
@@ -28,11 +30,16 @@ public class Task {
     private String description;
     private LocalDate deadline;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany
+    @JoinTable(
+            name = "task_users",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Collection<User> users = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status; // TODO, IN_PROGRESS, DONE
 
+    
 }

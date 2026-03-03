@@ -1,14 +1,13 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.TaskCreateRequestDto;
-import com.example.demo.dto.TaskResponseDto;
 import com.example.demo.entity.Task;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-02T22:39:07+0000",
+    date = "2026-03-03T22:06:23+0000",
     comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.17 (Eclipse Adoptium)"
 )
 @Component
@@ -42,21 +41,5 @@ public class TaskMapperImpl implements TaskMapper {
         }
 
         return taskCreateRequestDto;
-    }
-
-    @Override
-    public TaskResponseDto toResponse(Task entity) {
-
-        TaskResponseDto taskResponseDto = new TaskResponseDto();
-
-        if ( entity != null ) {
-            taskResponseDto.setId( entity.getId() );
-            taskResponseDto.setTitle( entity.getTitle() );
-            taskResponseDto.setDescription( entity.getDescription() );
-            taskResponseDto.setDeadline( entity.getDeadline() );
-            taskResponseDto.setStatus( entity.getStatus() );
-        }
-
-        return taskResponseDto;
     }
 }

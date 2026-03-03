@@ -1,14 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.TaskAssignUsersRequestDto;
 import com.example.demo.dto.TaskCreateRequestDto;
 import com.example.demo.dto.TaskResponseDto;
 import com.example.demo.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class TaskController {
@@ -30,4 +32,21 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(task));
     }
 
+    @PutMapping("/users/{userId}/tasks/{taskId}")
+    public ResponseEntity<TaskResponseDto> assignTaskToUser(
+            @PathVariable UUID taskId,
+            @PathVariable UUID userId) {
+        return ResponseEntity.ok(taskService.assignTaskToUser(taskId, userId));
+    }
+
+    @PutMapping(value = "/api/tasks/{taskId}/users", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<TaskResponseDto> assignTaskToUsers(
+            @PathVariable UUID taskId,
+            @RequestBody TaskAssignUsersRequestDto request) {
+        List<UUID> userIds = request == null || request.getUsers() == null
+                ? List.of()
+                : request.getUsers().stream().map(TaskAssignUsersRequestDto.UserRef::getUserId).toList();
+
+        return ResponseEntity.ok(taskService.assignTaskToUsers(taskId, userIds));
+    }
 }

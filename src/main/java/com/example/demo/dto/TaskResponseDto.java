@@ -19,6 +19,13 @@ public class TaskResponseDto {
     private LocalDate deadline;
     private TaskStatus status;
 
-    private UUID userId;
-    private String username;
+    private java.util.List<UserSummary> users;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UserSummary {
+        private UUID userId;
+        private String userName;
+    }
 }
