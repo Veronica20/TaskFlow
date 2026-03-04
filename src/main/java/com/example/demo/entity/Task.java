@@ -41,5 +41,12 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private TaskStatus status; // TODO, IN_PROGRESS, DONE
 
-    
+    @PreRemove
+    private void detachUsers() {
+        if (users == null || users.isEmpty()) {
+            return;
+        }
+        users.forEach(user -> user.getTasks().remove(this));
+        users.clear();
+    }
 }

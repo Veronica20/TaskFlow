@@ -49,4 +49,22 @@ public class TaskController {
 
         return ResponseEntity.ok(taskService.assignTaskToUsers(taskId, userIds));
     }
+
+    @DeleteMapping("/api/tasks/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable UUID taskId) {
+        taskService.deleteTask(taskId);
+        return ResponseEntity.noContent().build();
+    }
+
+    public void getTasks(UUID taskId) {
+        //todo
+    }
+
+    public void getTask(UUID taskId) {
+        //todo
+    }
+
+    public void updateTask(UUID taskId) {
+        //todo
+    }
 }

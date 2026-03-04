@@ -70,4 +70,11 @@ public class TaskService {
 
         return taskMapper.toResponse(task);
     }
+
+    public void deleteTask(UUID taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        taskRepository.delete(task);
+    }
 }
