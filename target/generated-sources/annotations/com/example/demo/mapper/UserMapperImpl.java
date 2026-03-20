@@ -18,12 +18,13 @@ import com.example.demo.entity.UserPreferences;
 import com.example.demo.entity.UserProfile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-03-20T21:45:42+0000",
+    date = "2026-03-20T22:08:03+0000",
     comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.17 (Eclipse Adoptium)"
 )
 @Component
@@ -64,12 +65,14 @@ public class UserMapperImpl implements UserMapper {
     @Override
     public UserResponseDto toResponse(User user) {
 
+        UUID id = null;
         String email = null;
         Role role = null;
         ProfileResponse profile = null;
         List<AddressResponse> addresses = null;
         PreferencesResponse preferences = null;
         if ( user != null ) {
+            id = user.getId();
             email = user.getEmail();
             role = user.getRole();
             profile = toResponse( user.getProfile() );
@@ -77,7 +80,7 @@ public class UserMapperImpl implements UserMapper {
             preferences = toResponse( user.getPreferences() );
         }
 
-        UserResponseDto userResponseDto = new UserResponseDto( email, role, profile, addresses, preferences );
+        UserResponseDto userResponseDto = new UserResponseDto( id, email, role, profile, addresses, preferences );
 
         if ( user != null ) {
         }
@@ -191,6 +194,7 @@ public class UserMapperImpl implements UserMapper {
         ProfileResponse profileResponse = new ProfileResponse();
 
         if ( profile != null ) {
+            profileResponse.setId( profile.getId() );
             profileResponse.setFirstName( profile.getFirstName() );
             profileResponse.setLastName( profile.getLastName() );
             profileResponse.setBirthDate( profile.getBirthDate() );
