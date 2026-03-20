@@ -1,6 +1,7 @@
 com/example/demo/validation/UniqueEmailValidator.class
 com/example/demo/dto/TaskCreateRequestDto.class
 com/example/demo/exception/GlobalExceptionHandler.class
+com/example/demo/security/CurrentTask.class
 com/example/demo/dto/ProfileRequest.class
 com/example/demo/entity/UserAddresses.class
 com/example/demo/dto/TaskResponseDto.class
@@ -45,4 +46,5 @@ com/example/demo/dto/UserResponseDto.class
 com/example/demo/validation/ExistingUserIdValidator.class
 com/example/demo/dto/TaskResponseDto$UserSummary.class
 com/example/demo/entity/Role.class
+com/example/demo/security/CurrentTaskResolver.class
 com/example/demo/entity/TaskStatus.class

@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.dto.TaskAssignUsersRequestDto;
 import com.example.demo.dto.TaskCreateRequestDto;
 import com.example.demo.dto.TaskResponseDto;
+import com.example.demo.entity.Task;
+import com.example.demo.security.CurrentTask;
 import com.example.demo.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -56,11 +58,12 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
-    public void getTasks(UUID taskId) {
-        //todo
+    @GetMapping("/api/tasks/{task}")
+    public ResponseEntity<TaskResponseDto> getTask(@CurrentTask Task task) {
+       return ResponseEntity.ok(taskService.toTaskResponse(task));
     }
 
-    public void getTask(UUID taskId) {
+    public void getTasks(UUID taskId) {
         //todo
     }
 
