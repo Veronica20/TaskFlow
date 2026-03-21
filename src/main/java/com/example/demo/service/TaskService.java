@@ -8,6 +8,8 @@ import com.example.demo.entity.User;
 import com.example.demo.mapper.TaskMapper;
 import com.example.demo.repository.TaskRepository;
 import com.example.demo.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,5 +83,11 @@ public class TaskService {
 
     public TaskResponseDto toTaskResponse(Task task) {
         return taskMapper.toResponse(task);
+    }
+
+    public Page<TaskResponseDto> getTasks(Pageable pageable) {
+
+        return taskRepository.findAll(pageable)
+                .map(taskMapper::toResponse);
     }
 }

@@ -7,6 +7,8 @@ import com.example.demo.entity.Task;
 import com.example.demo.security.CurrentTask;
 import com.example.demo.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,8 +65,10 @@ public class TaskController {
        return ResponseEntity.ok(taskService.toTaskResponse(task));
     }
 
-    public void getTasks(UUID taskId) {
-        //todo
+    @GetMapping("/api/tasks")
+    public Page<TaskResponseDto> getTasks(Pageable pageable) {
+
+        return taskService.getTasks(pageable);
     }
 
     public void updateTask(UUID taskId) {
