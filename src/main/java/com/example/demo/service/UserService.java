@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import ch.qos.logback.core.encoder.EchoEncoder;
 import com.example.demo.dto.PreferencesUpdateRequest;
 import com.example.demo.dto.ProfileUpdateRequest;
 import com.example.demo.dto.UserCreateRequestDto;
@@ -13,6 +14,7 @@ import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -28,10 +30,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<User> getGreeting() {
@@ -46,6 +50,7 @@ public class UserService {
 
         User user = userMapper.toEntity(userCreateRequestDto);
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = userRepository.save(user);
 
         return userMapper.toResponse(saved);

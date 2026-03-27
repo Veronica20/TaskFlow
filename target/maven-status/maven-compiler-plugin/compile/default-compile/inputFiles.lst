@@ -1,11 +1,14 @@
 /app/src/main/java/com/example/demo/DemoApplication.java
 /app/src/main/java/com/example/demo/config/SecurityConfig.java
 /app/src/main/java/com/example/demo/config/WebConfig.java
+/app/src/main/java/com/example/demo/controller/AuthController.java
 /app/src/main/java/com/example/demo/controller/HelloController.java
 /app/src/main/java/com/example/demo/controller/TaskController.java
 /app/src/main/java/com/example/demo/controller/UserController.java
 /app/src/main/java/com/example/demo/dto/AddressRequest.java
 /app/src/main/java/com/example/demo/dto/AddressResponse.java
+/app/src/main/java/com/example/demo/dto/AuthResponse.java
+/app/src/main/java/com/example/demo/dto/LoginRequest.java
 /app/src/main/java/com/example/demo/dto/PreferencesRequest.java
 /app/src/main/java/com/example/demo/dto/PreferencesResponse.java
 /app/src/main/java/com/example/demo/dto/PreferencesUpdateRequest.java
@@ -37,7 +40,10 @@
 /app/src/main/java/com/example/demo/security/CurrentTaskResolver.java
 /app/src/main/java/com/example/demo/security/CurrentUser.java
 /app/src/main/java/com/example/demo/security/CurrentUserResolver.java
+/app/src/main/java/com/example/demo/security/JwtAuthenticationFilter.java
+/app/src/main/java/com/example/demo/service/AuthService.java
 /app/src/main/java/com/example/demo/service/HelloService.java
+/app/src/main/java/com/example/demo/service/JwtService.java
 /app/src/main/java/com/example/demo/service/TaskService.java
 /app/src/main/java/com/example/demo/service/UserService.java
 /app/src/main/java/com/example/demo/validation/ExistingUserId.java
