@@ -15,6 +15,7 @@
 /app/src/main/java/com/example/demo/dto/ProfileRequest.java
 /app/src/main/java/com/example/demo/dto/ProfileResponse.java
 /app/src/main/java/com/example/demo/dto/ProfileUpdateRequest.java
+/app/src/main/java/com/example/demo/dto/RegisterRequest.java
 /app/src/main/java/com/example/demo/dto/TaskAssignUsersRequestDto.java
 /app/src/main/java/com/example/demo/dto/TaskCreateRequestDto.java
 /app/src/main/java/com/example/demo/dto/TaskResponseDto.java
@@ -32,6 +33,7 @@
 /app/src/main/java/com/example/demo/entity/UserProfile.java
 /app/src/main/java/com/example/demo/exception/GlobalExceptionHandler.java
 /app/src/main/java/com/example/demo/exception/UserNotFoundException.java
+/app/src/main/java/com/example/demo/mapper/RegisterMapper.java
 /app/src/main/java/com/example/demo/mapper/TaskMapper.java
 /app/src/main/java/com/example/demo/mapper/UserMapper.java
 /app/src/main/java/com/example/demo/repository/TaskRepository.java
