@@ -31,6 +31,8 @@
 /app/src/main/java/com/example/demo/entity/UserAddresses.java
 /app/src/main/java/com/example/demo/entity/UserPreferences.java
 /app/src/main/java/com/example/demo/entity/UserProfile.java
+/app/src/main/java/com/example/demo/exception/EmailAlreadyExistsException.java
+/app/src/main/java/com/example/demo/exception/ErrorResponse.java
 /app/src/main/java/com/example/demo/exception/GlobalExceptionHandler.java
 /app/src/main/java/com/example/demo/exception/UserNotFoundException.java
 /app/src/main/java/com/example/demo/mapper/RegisterMapper.java
@@ -43,7 +45,10 @@
 /app/src/main/java/com/example/demo/security/CurrentUser.java
 /app/src/main/java/com/example/demo/security/CurrentUserResolver.java
 /app/src/main/java/com/example/demo/security/JwtAuthenticationFilter.java
+/app/src/main/java/com/example/demo/security/handler/CustomAccessDeniedHandler.java
+/app/src/main/java/com/example/demo/security/handler/CustomAuthenticationEntryPoint.java
 /app/src/main/java/com/example/demo/service/AuthService.java
+/app/src/main/java/com/example/demo/service/CustomUserDetailsService.java
 /app/src/main/java/com/example/demo/service/HelloService.java
 /app/src/main/java/com/example/demo/service/JwtService.java
 /app/src/main/java/com/example/demo/service/TaskService.java

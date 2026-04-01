@@ -17,10 +17,9 @@ public class JwtService {
 
     private static final String SECRET_KEY = "Kf83Jd9sL2pQx7Vn4TzW6Yb1Rm8Ue5AqC0hXkL9Np";
 
-    public String generateToken(User user) {
+    public String generateToken(String email) {
         return Jwts.builder()
-                .setSubject(user.getEmail())
-                .claim("id", user.getId())
+                .setSubject(email)
                 .setIssuedAt(new Date())
 //                .claim("role", user.getRole())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour

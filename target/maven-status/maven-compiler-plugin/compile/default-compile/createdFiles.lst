@@ -15,9 +15,11 @@ com/example/demo/service/JwtService.class
 com/example/demo/mapper/UserMapper.class
 com/example/demo/exception/UserNotFoundException.class
 com/example/demo/dto/AddressRequest.class
+com/example/demo/service/CustomUserDetailsService.class
 com/example/demo/validation/ExistingUserId.class
 com/example/demo/dto/ProfileUpdateRequest.class
 com/example/demo/repository/UserRepository.class
+com/example/demo/exception/EmailAlreadyExistsException.class
 com/example/demo/repository/TaskRepository.class
 com/example/demo/dto/TaskAssignUsersRequestDto$UserRef.class
 com/example/demo/security/CurrentUserResolver.class
@@ -43,6 +45,8 @@ com/example/demo/dto/PreferencesRequest.class
 com/example/demo/DemoApplication.class
 com/example/demo/dto/LoginRequest.class
 com/example/demo/controller/HelloController.class
+com/example/demo/exception/ErrorResponse.class
+com/example/demo/security/handler/CustomAccessDeniedHandler.class
 com/example/demo/mapper/TaskMapper.class
 com/example/demo/service/TaskService.class
 com/example/demo/mapper/RegisterMapperImpl.class
@@ -53,6 +57,8 @@ com/example/demo/entity/Language.class
 com/example/demo/dto/UserResponseDto.class
 com/example/demo/service/AuthService.class
 com/example/demo/validation/ExistingUserIdValidator.class
+com/example/demo/exception/ErrorResponse$ErrorResponseBuilder.class
+com/example/demo/security/handler/CustomAuthenticationEntryPoint.class
 com/example/demo/dto/TaskResponseDto$UserSummary.class
 com/example/demo/entity/Role.class
 com/example/demo/security/CurrentTaskResolver.class
