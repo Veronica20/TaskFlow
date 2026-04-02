@@ -1,6 +1,7 @@
 /app/src/main/java/com/example/demo/DemoApplication.java
 /app/src/main/java/com/example/demo/config/SecurityConfig.java
 /app/src/main/java/com/example/demo/config/WebConfig.java
+/app/src/main/java/com/example/demo/config/WebMvcConfig.java
 /app/src/main/java/com/example/demo/controller/AuthController.java
 /app/src/main/java/com/example/demo/controller/HelloController.java
 /app/src/main/java/com/example/demo/controller/TaskController.java
@@ -48,6 +49,7 @@
 /app/src/main/java/com/example/demo/security/handler/CustomAccessDeniedHandler.java
 /app/src/main/java/com/example/demo/security/handler/CustomAuthenticationEntryPoint.java
 /app/src/main/java/com/example/demo/service/AuthService.java
+/app/src/main/java/com/example/demo/service/AvatarStorageService.java
 /app/src/main/java/com/example/demo/service/CustomUserDetailsService.java
 /app/src/main/java/com/example/demo/service/HelloService.java
 /app/src/main/java/com/example/demo/service/JwtService.java

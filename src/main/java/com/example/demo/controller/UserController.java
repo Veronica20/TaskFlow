@@ -7,13 +7,14 @@ import com.example.demo.entity.User;
 import com.example.demo.security.CurrentUser;
 import com.example.demo.service.UserService;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @Validated
@@ -41,8 +42,8 @@ public class UserController {
 
     @PatchMapping(
             value = "/users/{user}",
-            consumes = "application/json",
-            produces = "application/json"
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<UserResponseDto> updateUser(
             @PathVariable
@@ -51,9 +52,30 @@ public class UserController {
     ) {
         UserResponseDto userResponseDto = userService.updateUser(
                 user,
-                userUpdateRequestDto
+                userUpdateRequestDto,
+                null
         );
 
+        return ResponseEntity.ok(userResponseDto);
+    }
+
+    /**
+     * Send {@code multipart/form-data} with optional part {@code user} (JSON, content-type application/json)
+     * and optional part {@code avatar} (image file: jpeg, png, gif, webp).
+     */
+    @PatchMapping(
+            value = "/users/{user}",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<UserResponseDto> updateUserWithAvatar(
+            @PathVariable
+            @CurrentUser User user,
+            @RequestPart(value = "user", required = false) @Valid UserUpdateRequestDto userUpdateRequestDto,
+            @RequestPart(value = "avatar", required = false) MultipartFile avatar
+    ) {
+        UserUpdateRequestDto dto = userUpdateRequestDto != null ? userUpdateRequestDto : new UserUpdateRequestDto();
+        UserResponseDto userResponseDto = userService.updateUser(user, dto, avatar);
         return ResponseEntity.ok(userResponseDto);
     }
 

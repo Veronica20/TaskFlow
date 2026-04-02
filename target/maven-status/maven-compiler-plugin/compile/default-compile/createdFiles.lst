@@ -46,6 +46,7 @@ com/example/demo/DemoApplication.class
 com/example/demo/dto/LoginRequest.class
 com/example/demo/controller/HelloController.class
 com/example/demo/exception/ErrorResponse.class
+com/example/demo/service/AvatarStorageService.class
 com/example/demo/security/handler/CustomAccessDeniedHandler.class
 com/example/demo/mapper/TaskMapper.class
 com/example/demo/service/TaskService.class
@@ -58,6 +59,7 @@ com/example/demo/dto/UserResponseDto.class
 com/example/demo/service/AuthService.class
 com/example/demo/validation/ExistingUserIdValidator.class
 com/example/demo/exception/ErrorResponse$ErrorResponseBuilder.class
+com/example/demo/config/WebMvcConfig.class
 com/example/demo/security/handler/CustomAuthenticationEntryPoint.class
 com/example/demo/dto/TaskResponseDto$UserSummary.class
 com/example/demo/entity/Role.class

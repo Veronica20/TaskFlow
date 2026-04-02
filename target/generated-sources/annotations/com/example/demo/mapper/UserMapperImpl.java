@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-02T06:47:45+0000",
+    date = "2026-04-02T22:30:19+0000",
     comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.17 (Eclipse Adoptium)"
 )
 @Component
@@ -199,6 +199,7 @@ public class UserMapperImpl implements UserMapper {
             profileResponse.setLastName( profile.getLastName() );
             profileResponse.setBirthDate( profile.getBirthDate() );
             profileResponse.setPhoneNumber( profile.getPhoneNumber() );
+            profileResponse.setAvatarUrl( profile.getAvatarUrl() );
         }
 
         return profileResponse;

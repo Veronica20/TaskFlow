@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.example.demo.dto.PreferencesUpdateRequest;
 import com.example.demo.dto.ProfileUpdateRequest;
 import com.example.demo.dto.UserCreateRequestDto;
@@ -16,7 +15,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,11 +32,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final AvatarStorageService avatarStorageService;
 
-    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, PasswordEncoder passwordEncoder,
+                       AvatarStorageService avatarStorageService) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.passwordEncoder = passwordEncoder;
+        this.avatarStorageService = avatarStorageService;
     }
 
     public Optional<User> getGreeting() {
@@ -56,7 +60,7 @@ public class UserService {
         return userMapper.toResponse(saved);
     }
 
-    public UserResponseDto updateUser(User user, UserUpdateRequestDto userUpdateRequestDto) {
+    public UserResponseDto updateUser(User user, UserUpdateRequestDto userUpdateRequestDto, MultipartFile avatar) {
 
         userMapper.updateUser(userUpdateRequestDto, user);
 
@@ -111,6 +115,23 @@ public class UserService {
 
             Set<String> incomingZips = incomingByZip.keySet();
             addresses.removeIf(address -> !incomingZips.contains(address.getZipCode()));
+        }
+
+        if (avatar != null && !avatar.isEmpty()) {
+            UserProfile profile = user.getProfile();
+            if (profile == null) {
+                profile = new UserProfile();
+                profile.setUser(user);
+                user.setProfile(profile);
+            }
+            String previous = profile.getAvatarUrl();
+            try {
+                String url = avatarStorageService.store(avatar, user.getId());
+                profile.setAvatarUrl(url);
+                avatarStorageService.deleteIfExists(previous);
+            } catch (IOException e) {
+                throw new IllegalStateException("Failed to store avatar", e);
+            }
         }
 
         User saved = userRepository.save(user);

@@ -21,6 +21,8 @@ public class UserProfile {
     private LocalDate birthDate;
     private String phoneNumber;
 
+    private String avatarUrl;
+
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
