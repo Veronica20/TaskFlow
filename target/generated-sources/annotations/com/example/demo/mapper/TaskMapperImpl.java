@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-02T22:30:19+0000",
-    comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.17 (Eclipse Adoptium)"
+    date = "2026-04-08T01:24:45+0400",
+    comments = "version: 1.6.2, compiler: javac, environment: Java 22 (Oracle Corporation)"
 )
 @Component
 public class TaskMapperImpl implements TaskMapper {

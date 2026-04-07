@@ -1,6 +1,7 @@
 package com.example.demo.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -36,6 +38,7 @@ public class GlobalExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
 
+        log.warn("Validation failed on {}: {} error(s)", request.getRequestURI(), errors.size());
         return ResponseEntity.badRequest().body(response);
     }
 
@@ -57,6 +60,7 @@ public class GlobalExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
 
+        log.warn("Unreadable request payload on {}: {}", request.getRequestURI(), detail);
         return ResponseEntity.badRequest().body(response);
     }
 
@@ -74,6 +78,7 @@ public class GlobalExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
 
+        log.error("Unhandled runtime exception on {}: {}", request.getRequestURI(), ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 
@@ -90,6 +95,7 @@ public class GlobalExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
 
+        log.warn("Authentication failed on {}: {}", request.getRequestURI(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body(response);
     }
 
@@ -107,6 +113,7 @@ public class GlobalExceptionHandler {
                 .path(request.getRequestURI())
                 .build();
 
+        log.info("Email already exists during request to {}: {}", request.getRequestURI(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 

@@ -9,11 +9,13 @@ import com.example.demo.exception.EmailAlreadyExistsException;
 import com.example.demo.mapper.RegisterMapper;
 import com.example.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class AuthService {
@@ -29,21 +31,15 @@ public class AuthService {
     public AuthResponse login(
             LoginRequest request
     ) {
-
-        System.out.println( new UsernamePasswordAuthenticationToken(
-                request.getEmail(),
-                request.getPassword()
-        ));
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
-
-        System.out.println(request.getEmail());
         String token = jwtService.generateToken(request.getEmail());
+
+        log.info("Login success: {}", request.getEmail());
 
         return new AuthResponse(token);
     }

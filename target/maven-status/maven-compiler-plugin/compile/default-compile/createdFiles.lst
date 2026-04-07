@@ -25,6 +25,7 @@ com/example/demo/dto/TaskAssignUsersRequestDto$UserRef.class
 com/example/demo/security/CurrentUserResolver.class
 com/example/demo/mapper/RegisterMapper.class
 com/example/demo/controller/TaskController.class
+com/example/demo/filter/RequestLoggingFilter.class
 com/example/demo/entity/Task.class
 com/example/demo/dto/AddressResponse.class
 com/example/demo/dto/AuthResponse.class

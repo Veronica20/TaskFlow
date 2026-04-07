@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.filter.RequestLoggingFilter;
 import com.example.demo.security.handler.CustomAccessDeniedHandler;
 import com.example.demo.security.handler.CustomAuthenticationEntryPoint;
 import com.example.demo.service.CustomUserDetailsService;
@@ -11,7 +12,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -38,7 +38,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
+    public SecurityFilterChain securityFilterChain(RequestLoggingFilter requestLoggingFilter, HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
             .csrf().disable()
             .authorizeHttpRequests(auth -> auth
@@ -50,7 +50,8 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(entryPoint)
                         .accessDeniedHandler(deniedHandler)
-                );
+                )
+            .addFilterBefore(requestLoggingFilter, UsernamePasswordAuthenticationFilter.class)
         ;
         return http.build();
     }

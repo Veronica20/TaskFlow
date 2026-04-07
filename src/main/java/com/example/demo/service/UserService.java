@@ -11,6 +11,7 @@ import com.example.demo.entity.UserPreferences;
 import com.example.demo.entity.UserProfile;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -53,14 +55,17 @@ public class UserService {
     public UserResponseDto saveUser(UserCreateRequestDto userCreateRequestDto) {
 
         User user = userMapper.toEntity(userCreateRequestDto);
+        log.info("Creating user with email={}", user.getEmail());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = userRepository.save(user);
+        log.info("User created: id={}, email={}", saved.getId(), saved.getEmail());
 
         return userMapper.toResponse(saved);
     }
 
     public UserResponseDto updateUser(User user, UserUpdateRequestDto userUpdateRequestDto, MultipartFile avatar) {
+        log.info("Updating user: id={}, email={}", user.getId(), user.getEmail());
 
         userMapper.updateUser(userUpdateRequestDto, user);
 
@@ -92,6 +97,7 @@ public class UserService {
             for (com.example.demo.dto.AddressRequest addressRequest : incoming) {
                 String zipCode = addressRequest.getZipCode();
                 if (incomingByZip.containsKey(zipCode)) {
+                    log.warn("Duplicate zipCode in update for user id={}: {}", user.getId(), zipCode);
                     throw new IllegalArgumentException("duplicate zipCode in addresses: " + zipCode);
                 }
                 incomingByZip.put(zipCode, addressRequest);
@@ -129,12 +135,15 @@ public class UserService {
                 String url = avatarStorageService.store(avatar, user.getId());
                 profile.setAvatarUrl(url);
                 avatarStorageService.deleteIfExists(previous);
+                log.info("Avatar updated for user id={}", user.getId());
             } catch (IOException e) {
+                log.error("Avatar storage failed for user id={}", user.getId(), e);
                 throw new IllegalStateException("Failed to store avatar", e);
             }
         }
 
         User saved = userRepository.save(user);
+        log.info("User updated: id={}, email={}", saved.getId(), saved.getEmail());
 
         return userMapper.toResponse(saved);
     }

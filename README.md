@@ -86,3 +86,36 @@ App errors → @RestControllerAdvice
     handlers
 
 
+Logging Strategy
+
+A structured and consistent logging strategy has been implemented to enhance observability, maintainability, and operational diagnostics across the application. Logging is primarily focused on critical layers, including global exception handling and core business services.
+
+Global Exception Handling
+
+The GlobalExceptionHandler is annotated with @Slf4j and is responsible for centralized exception logging. Log levels are assigned based on the nature and severity of the events:
+
+WARN — Validation failures and request body parsing errors (e.g., malformed JSON)
+WARN — Authentication and authorization-related failures
+INFO — Business rule violations such as email duplication conflicts
+ERROR — Unhandled runtime exceptions, including full stack trace logging for diagnostic purposes
+
+This approach ensures clear differentiation between client-side issues, business constraints, and system-level failures.
+
+User Service Logging
+
+The UserService incorporates structured logging to track key business operations and state transitions:
+
+INFO — Initiation and successful completion of user creation and update operations
+WARN — Detection of data inconsistencies, such as duplicate address ZIP codes during update operations
+INFO — Successful avatar upload operations
+ERROR — Failures during avatar upload processes, with stack trace included for troubleshooting
+Observability Outcomes
+
+This logging strategy provides:
+
+Consistent and predictable log structure across application layers
+Appropriate log level classification aligned with industry best practices
+Improved traceability of user actions and system behavior
+Enhanced support for debugging, monitoring, and incident analysis in production environments
+
+
