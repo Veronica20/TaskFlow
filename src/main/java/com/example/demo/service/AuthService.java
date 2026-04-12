@@ -24,6 +24,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final RegisterMapper registerMapper;
+    private final EmailService emailService;
 
 
     private final AuthenticationManager authenticationManager;
@@ -56,6 +57,9 @@ public class AuthService {
 
         User savedUser = userRepository.save(user);
         String token = jwtService.generateToken(savedUser.getEmail());
+
+        log.info("Register success: {}", savedUser.getEmail());
+        emailService.sendWelcomeEmail(user.getEmail());
 
         return new AuthResponse(token);
     }

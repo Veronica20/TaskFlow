@@ -40,6 +40,7 @@ com/example/demo/config/WebConfig.class
 com/example/demo/mapper/UserMapperImpl.class
 com/example/demo/mapper/TaskMapperImpl.class
 com/example/demo/entity/UserPreferences.class
+com/example/demo/config/AsyncConfig.class
 com/example/demo/dto/PreferencesResponse.class
 com/example/demo/dto/UserCreateRequestDto.class
 com/example/demo/dto/PreferencesRequest.class
@@ -59,6 +60,7 @@ com/example/demo/entity/Language.class
 com/example/demo/dto/UserResponseDto.class
 com/example/demo/service/AuthService.class
 com/example/demo/validation/ExistingUserIdValidator.class
+com/example/demo/service/EmailService.class
 com/example/demo/exception/ErrorResponse$ErrorResponseBuilder.class
 com/example/demo/config/WebMvcConfig.class
 com/example/demo/security/handler/CustomAuthenticationEntryPoint.class

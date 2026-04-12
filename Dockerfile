@@ -1,4 +1,4 @@
-#FROM eclipse-temurin:17-jdk-alpine
+#FROM eclipse-temurin:21-jdk-alpine
 #
 #WORKDIR /app
 #
@@ -11,7 +11,7 @@
 ## Wait for MySQL to be ready before starting the app
 #CMD ["/app/wait-for-it.sh", "db:3306", "--", "java", "-jar", "app.jar"]
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 
