@@ -25,6 +25,7 @@
 /app/src/main/java/com/example/demo/dto/UserResponseDto.java
 /app/src/main/java/com/example/demo/dto/UserUpdateRequestDto.java
 /app/src/main/java/com/example/demo/entity/Language.java
+/app/src/main/java/com/example/demo/entity/LoginAttempt.java
 /app/src/main/java/com/example/demo/entity/Role.java
 /app/src/main/java/com/example/demo/entity/Task.java
 /app/src/main/java/com/example/demo/entity/TaskStatus.java
@@ -41,6 +42,7 @@
 /app/src/main/java/com/example/demo/mapper/RegisterMapper.java
 /app/src/main/java/com/example/demo/mapper/TaskMapper.java
 /app/src/main/java/com/example/demo/mapper/UserMapper.java
+/app/src/main/java/com/example/demo/repository/LoginAttemptRepository.java
 /app/src/main/java/com/example/demo/repository/TaskRepository.java
 /app/src/main/java/com/example/demo/repository/UserRepository.java
 /app/src/main/java/com/example/demo/security/CurrentTask.java
@@ -56,6 +58,7 @@
 /app/src/main/java/com/example/demo/service/EmailService.java
 /app/src/main/java/com/example/demo/service/HelloService.java
 /app/src/main/java/com/example/demo/service/JwtService.java
+/app/src/main/java/com/example/demo/service/LoginAttemptService.java
 /app/src/main/java/com/example/demo/service/TaskService.java
 /app/src/main/java/com/example/demo/service/UserService.java
 /app/src/main/java/com/example/demo/validation/ExistingUserId.java

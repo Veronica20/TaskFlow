@@ -21,5 +21,30 @@ Used for repeated or timed jobs
 2.4 Generate reports
 
 
-1.1
+1.1  Sending email after registration
  I have created EmailService, and used it into the registration part, when user was registered worked email task executyon
+
+ 1.3 Log login attempts
+    What was changed
+    Updated AuthController login endpoint to capture client IP via HttpServletRequest.
+    Updated AuthService login method signature to accept ipAddress.
+    Added LoginAttemptService usage in AuthService:
+    logs success=false when authentication fails (then rethrows the same auth exception)
+    logs success=true after successful authentication
+
+    Every /auth/login request now records an attempt with:
+
+    email
+    success (true/false)
+    ipAddress
+    timestamp
+
+     ---FOR THE FUTURE----
+
+     🚫 Block user after 5 failed attempts
+     🔐 Detect brute-force attacks
+     📊 Admin dashboard (login analytics)
+     🌍 Track suspicious IPs
+     🔥 connect this with Spring Security filter (automatic logging without touching service)
+
+
