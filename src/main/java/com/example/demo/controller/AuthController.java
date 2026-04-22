@@ -32,4 +32,10 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest httpRequest) {
+        authService.logout(httpRequest);
+        return ResponseEntity.noContent().build();
+    }
 }

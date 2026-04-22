@@ -6,6 +6,7 @@ import com.example.demo.dto.RegisterRequest;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.exception.EmailAlreadyExistsException;
+import com.example.demo.exception.InvalidTokenException;
 import com.example.demo.mapper.RegisterMapper;
 import com.example.demo.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ public class AuthService {
     private final RegisterMapper registerMapper;
     private final EmailService emailService;
     private final LoginAttemptService loginAttemptService;
+    private final TokenBlacklistService tokenBlacklistService;
 
 
     private final AuthenticationManager authenticationManager;
@@ -80,5 +82,24 @@ public class AuthService {
         emailService.sendWelcomeEmail(user.getEmail());
 
         return new AuthResponse(token);
+    }
+
+    public void logout(HttpServletRequest httpRequest) {
+        String authHeader = httpRequest.getHeader("Authorization");
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            throw new InvalidTokenException("Authorization header with Bearer token is required");
+        }
+
+        String token = authHeader.substring(7);
+
+        if (token.isBlank()) {
+            throw new InvalidTokenException("Bearer token must not be empty");
+        }
+
+        jwtService.extractUsername(token);
+        tokenBlacklistService.blacklist(token);
+
+        log.info("Logout success");
     }
 }
