@@ -5,6 +5,7 @@ import com.example.demo.dto.LoginRequest;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
+import com.example.demo.entity.UserStatus;
 import com.example.demo.exception.EmailAlreadyExistsException;
 import com.example.demo.exception.InvalidTokenException;
 import com.example.demo.mapper.RegisterMapper;
@@ -73,6 +74,7 @@ public class AuthService {
 
         User user = registerMapper.toEntity(request);
         user.setRole(Role.USER);
+        user.setStatus(UserStatus.ACTIVE);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         User savedUser = userRepository.save(user);

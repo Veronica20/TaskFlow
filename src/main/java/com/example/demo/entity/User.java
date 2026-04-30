@@ -36,6 +36,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role; // USER or ADMIN
 
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserProfile profile;
 

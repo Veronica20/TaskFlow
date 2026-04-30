@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Role;
+import com.example.demo.entity.UserStatus;
 import com.example.demo.validation.UniqueEmail;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
@@ -25,6 +26,8 @@ public class UserCreateRequestDto {
 
     @NotNull
     private Role role;
+
+    private UserStatus status;
 
     @Valid
     @NotNull

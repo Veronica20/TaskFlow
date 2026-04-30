@@ -9,6 +9,7 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserAddresses;
 import com.example.demo.entity.UserPreferences;
 import com.example.demo.entity.UserProfile;
+import com.example.demo.entity.UserStatus;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -57,6 +58,9 @@ public class UserService {
         User user = userMapper.toEntity(userCreateRequestDto);
         log.info("Creating user with email={}", user.getEmail());
 
+        if (user.getStatus() == null) {
+            user.setStatus(UserStatus.ACTIVE);
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = userRepository.save(user);
         log.info("User created: id={}, email={}", saved.getId(), saved.getEmail());

@@ -16,4 +16,7 @@ public class RegisterRequest {
 
     @NotBlank(message = "Password is required")
     private String password;
+
+    @NotBlank(message = "Confirm password is required")
+    private String confirmPassword;
 }

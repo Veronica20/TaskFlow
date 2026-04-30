@@ -16,6 +16,7 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserAddresses;
 import com.example.demo.entity.UserPreferences;
 import com.example.demo.entity.UserProfile;
+import com.example.demo.entity.UserStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,8 +25,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-04-19T19:47:33+0000",
-    comments = "version: 1.6.2, compiler: javac, environment: Java 21.0.10 (Eclipse Adoptium)"
+    date = "2026-05-01T00:13:01+0400",
+    comments = "version: 1.6.2, compiler: javac, environment: Java 22 (Oracle Corporation)"
 )
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -39,6 +40,7 @@ public class UserMapperImpl implements UserMapper {
             user.setEmail( dto.getEmail() );
             user.setPassword( dto.getPassword() );
             user.setRole( dto.getRole() );
+            user.setStatus( dto.getStatus() );
             user.setProfile( toEntity( dto.getProfile() ) );
             user.setPreferences( toEntity( dto.getPreferences() ) );
             user.setAddresses( addressRequestListToUserAddressesList( dto.getAddresses() ) );
@@ -59,6 +61,9 @@ public class UserMapperImpl implements UserMapper {
             if ( dto.getPassword() != null ) {
                 user.setPassword( dto.getPassword() );
             }
+            if ( dto.getStatus() != null ) {
+                user.setStatus( dto.getStatus() );
+            }
         }
     }
 
@@ -68,6 +73,7 @@ public class UserMapperImpl implements UserMapper {
         UUID id = null;
         String email = null;
         Role role = null;
+        UserStatus status = null;
         ProfileResponse profile = null;
         List<AddressResponse> addresses = null;
         PreferencesResponse preferences = null;
@@ -75,12 +81,13 @@ public class UserMapperImpl implements UserMapper {
             id = user.getId();
             email = user.getEmail();
             role = user.getRole();
+            status = user.getStatus();
             profile = toResponse( user.getProfile() );
             addresses = toResponse( user.getAddresses() );
             preferences = toResponse( user.getPreferences() );
         }
 
-        UserResponseDto userResponseDto = new UserResponseDto( id, email, role, profile, addresses, preferences );
+        UserResponseDto userResponseDto = new UserResponseDto( id, email, role, status, profile, addresses, preferences );
 
         if ( user != null ) {
         }

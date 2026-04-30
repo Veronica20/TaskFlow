@@ -1,5 +1,6 @@
 com/example/demo/validation/UniqueEmailValidator.class
 com/example/demo/dto/TaskCreateRequestDto.class
+com/example/demo/entity/UserStatus.class
 com/example/demo/exception/GlobalExceptionHandler.class
 com/example/demo/security/CurrentTask.class
 com/example/demo/dto/ProfileRequest.class
