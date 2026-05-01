@@ -39,6 +39,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserProfile profile;
 

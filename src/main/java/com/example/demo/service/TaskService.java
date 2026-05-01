@@ -41,7 +41,7 @@ public class TaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByIdAndDeletedFalse(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         task.getUsers().add(user);
@@ -63,7 +63,7 @@ public class TaskService {
                 .distinct()
                 .collect(Collectors.toList());
 
-        List<User> users = userRepository.findAllById(uniqueUserIds);
+        List<User> users = userRepository.findAllByIdInAndDeletedFalse(uniqueUserIds);
         if (users.size() != uniqueUserIds.size()) {
             throw new RuntimeException("One or more users not found");
         }

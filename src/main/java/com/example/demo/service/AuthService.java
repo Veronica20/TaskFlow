@@ -75,6 +75,7 @@ public class AuthService {
         User user = registerMapper.toEntity(request);
         user.setRole(Role.USER);
         user.setStatus(UserStatus.ACTIVE);
+        user.setDeleted(false);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         User savedUser = userRepository.save(user);

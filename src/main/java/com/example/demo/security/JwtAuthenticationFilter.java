@@ -69,7 +69,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            User user = userRepository.findByEmail(email)
+            User user = userRepository.findByEmailAndDeletedFalse(email)
                     .orElseThrow();
 
             System.out.println("USER: " + user);

@@ -61,7 +61,7 @@ public class CurrentUserResolver implements HandlerMethodArgumentResolver {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "user must be a valid UUID");
         }
 
-        return userRepository.findById(userId)
+        return userRepository.findByIdAndDeletedFalse(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 

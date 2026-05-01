@@ -50,7 +50,7 @@ public class UserService {
     }
 
     public Optional<User> getUserById(UUID id) {
-        return this.userRepository.findById(id);
+        return this.userRepository.findByIdAndDeletedFalse(id);
     }
 
     public UserResponseDto saveUser(UserCreateRequestDto userCreateRequestDto) {
@@ -61,6 +61,7 @@ public class UserService {
         if (user.getStatus() == null) {
             user.setStatus(UserStatus.ACTIVE);
         }
+        user.setDeleted(false);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = userRepository.save(user);
         log.info("User created: id={}, email={}", saved.getId(), saved.getEmail());
@@ -154,11 +155,22 @@ public class UserService {
 
     public Page<UserResponseDto> getUsers(Pageable pageable) {
 
-        return userRepository.findAll(pageable)
+        return userRepository.findAllByDeletedFalse(pageable)
                 .map(userMapper::toResponse);
     }
 
     public UserResponseDto toUserResponse(User user) {
         return userMapper.toResponse(user);
+    }
+
+    public void softDeleteUser(User user) {
+        if (user.isDeleted()) {
+            return;
+        }
+
+        user.setDeleted(true);
+        user.setStatus(UserStatus.INACTIVE);
+        userRepository.save(user);
+        log.info("User soft deleted: id={}, email={}", user.getId(), user.getEmail());
     }
 }

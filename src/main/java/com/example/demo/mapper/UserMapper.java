@@ -30,11 +30,13 @@ public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "tasks", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     User toEntity(UserCreateRequestDto dto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "role", ignore = true)
+    @Mapping(target = "deleted", ignore = true)
     @Mapping(target = "tasks", ignore = true)
     @Mapping(target = "profile", ignore = true)
     @Mapping(target = "preferences", ignore = true)

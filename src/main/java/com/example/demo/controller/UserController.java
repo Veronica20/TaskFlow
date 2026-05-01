@@ -92,4 +92,11 @@ public class UserController {
         return ResponseEntity.ok(userResponseDto);
     }
 
+    @DeleteMapping("/users/{user}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteUser(@CurrentUser User user) {
+        userService.softDeleteUser(user);
+        return ResponseEntity.noContent().build();
+    }
+
 }
