@@ -30,6 +30,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
                   OR LOWER(u.email) LIKE LOWER(CONCAT('%', :search, '%'))
                   OR LOWER(p.firstName) LIKE LOWER(CONCAT('%', :search, '%'))
                   OR LOWER(p.lastName) LIKE LOWER(CONCAT('%', :search, '%'))
+                  OR LOWER(CONCAT(COALESCE(p.firstName, ''), ' ', COALESCE(p.lastName, '')))
+                     LIKE LOWER(CONCAT('%', :search, '%'))
               )
             """)
     Page<User> searchUsers(
