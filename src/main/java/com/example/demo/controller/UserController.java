@@ -80,8 +80,11 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public Page<UserResponseDto> getUsers(Pageable pageable) {
-        return userService.getUsers(pageable);
+    public Page<UserResponseDto> getUsers(
+            @RequestParam(value = "search", required = false) String search,
+            Pageable pageable
+    ) {
+        return userService.getUsers(search, pageable);
     }
 
 

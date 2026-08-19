@@ -153,10 +153,23 @@ public class UserService {
         return userMapper.toResponse(saved);
     }
 
-    public Page<UserResponseDto> getUsers(Pageable pageable) {
-
-        return userRepository.findAllByDeletedFalse(pageable)
+    public Page<UserResponseDto> getUsers(
+            String search,
+            Pageable pageable
+    ) {
+        return userRepository.searchUsers(
+                        trimToNull(search),
+                        pageable
+                )
                 .map(userMapper::toResponse);
+    }
+
+    private String trimToNull(String value) {
+        if (value == null) {
+            return null;
+        }
+        String trimmed = value.trim();
+        return trimmed.isEmpty() ? null : trimmed;
     }
 
     public UserResponseDto toUserResponse(User user) {
