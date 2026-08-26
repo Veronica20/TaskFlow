@@ -27,6 +27,7 @@ public class Task {
     @Column(length = 36)
     private UUID id;
     private String title;
+    private String shortDescription;
     private String description;
     private LocalDate deadline;
 
@@ -40,6 +41,9 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status; // TODO, IN_PROGRESS, DONE
+
+    @Enumerated(EnumType.STRING)
+    private TaskPriority priority;
 
     @PreRemove
     private void detachUsers() {

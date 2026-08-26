@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.entity.TaskPriority;
 import com.example.demo.entity.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,11 @@ public class TaskResponseDto {
 
     private UUID id;
     private String title;
+    private String shortDescription;
     private String description;
     private LocalDate deadline;
     private TaskStatus status;
+    private TaskPriority priority;
 
     private java.util.List<UserSummary> users;
 

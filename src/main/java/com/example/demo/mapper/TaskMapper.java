@@ -26,9 +26,11 @@ public interface TaskMapper {
         TaskResponseDto dto = new TaskResponseDto();
         dto.setId(entity.getId());
         dto.setTitle(entity.getTitle());
+        dto.setShortDescription(entity.getShortDescription());
         dto.setDescription(entity.getDescription());
         dto.setDeadline(entity.getDeadline());
         dto.setStatus(entity.getStatus());
+        dto.setPriority(entity.getPriority());
 
         List<User> users = entity.getUsers() == null ? Collections.emptyList() : new ArrayList<>(entity.getUsers());
         dto.setUsers(users.stream()

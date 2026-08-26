@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import com.example.demo.entity.TaskPriority;
 import com.example.demo.entity.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,6 +17,9 @@ public class TaskCreateRequestDto {
     @NotBlank(message = "Title cannot be blank")
     private String title;
 
+    @NotBlank(message = "Short description cannot be blank")
+    private String shortDescription;
+
     @NotBlank(message = "Description cannot be blank")
     private String description;
 
@@ -24,4 +28,7 @@ public class TaskCreateRequestDto {
 
     @NotNull(message = "Status is required")
     private TaskStatus status;
+
+    @NotNull(message = "Priority is required")
+    private TaskPriority priority;
 }

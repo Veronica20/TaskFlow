@@ -29,6 +29,7 @@
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/LoginAttempt.java
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/Role.java
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/Task.java
+/Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/TaskPriority.java
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/TaskStatus.java
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/TestEntity.java
 /Users/veronicavoskanyan/Sites/TaskFlow/src/main/java/com/example/demo/entity/User.java

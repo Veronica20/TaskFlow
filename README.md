@@ -1,4 +1,12 @@
 # TaskFlow
+
+## Documentation
+
+- [API reference](docs/API.md)
+- [Manual API test report — 2026-08-25](docs/MANUAL_API_TEST_REPORT.md)
+
+## Local startup
+
 docker compose up --build
 
 docker exec -it taskflow-db mysql -u root -p
@@ -117,5 +125,4 @@ Consistent and predictable log structure across application layers
 Appropriate log level classification aligned with industry best practices
 Improved traceability of user actions and system behavior
 Enhanced support for debugging, monitoring, and incident analysis in production environments
-
 
