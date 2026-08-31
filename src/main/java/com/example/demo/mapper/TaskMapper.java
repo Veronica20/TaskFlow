@@ -2,10 +2,10 @@ package com.example.demo.mapper;
 
 import com.example.demo.dto.TaskCreateRequestDto;
 import com.example.demo.dto.TaskResponseDto;
+import com.example.demo.dto.TaskUpdateRequestDto;
 import com.example.demo.entity.Task;
 import com.example.demo.entity.User;
-import org.mapstruct.Mapper;
-import org.mapstruct.NullValueMappingStrategy;
+import org.mapstruct.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,9 +14,18 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring", nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 public interface TaskMapper {
+    @Mapping(target = "users", ignore = true)
     Task toEntity(TaskCreateRequestDto dto);
 
+    @Mapping(target = "users", ignore = true)
     TaskCreateRequestDto toDto(Task entity);
+
+    @BeanMapping(
+            nullValuePropertyMappingStrategy =
+                    NullValuePropertyMappingStrategy.IGNORE
+    )
+    @Mapping(target = "users", ignore = true)
+    void updateTask(TaskUpdateRequestDto dto, @MappingTarget Task entity);
 
     default TaskResponseDto toResponse(Task entity) {
         if (entity == null) {

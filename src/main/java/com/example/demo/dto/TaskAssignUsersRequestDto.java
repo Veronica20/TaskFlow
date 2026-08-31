@@ -12,12 +12,5 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TaskAssignUsersRequestDto {
 
-    private List<UserRef> users;
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class UserRef {
-        private UUID userId;
-    }
+    private List<UUID> users;
 }

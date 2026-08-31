@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.TaskAssignUsersRequestDto;
 import com.example.demo.dto.TaskCreateRequestDto;
 import com.example.demo.dto.TaskResponseDto;
+import com.example.demo.dto.TaskUpdateRequestDto;
 import com.example.demo.entity.Task;
 import com.example.demo.security.CurrentTask;
 import com.example.demo.service.TaskService;
@@ -36,6 +37,17 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(task));
     }
 
+    @PatchMapping(value = "/api/tasks/{taskId}",
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public ResponseEntity<TaskResponseDto> updateTask(
+            @PathVariable UUID taskId,
+            @Valid @RequestBody TaskUpdateRequestDto taskUpdateRequestDto
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(taskService.updateTask(taskId, taskUpdateRequestDto));
+    }
+
     @PutMapping("/users/{userId}/tasks/{taskId}")
     public ResponseEntity<TaskResponseDto> assignTaskToUser(
             @PathVariable UUID taskId,
@@ -49,7 +61,7 @@ public class TaskController {
             @RequestBody TaskAssignUsersRequestDto request) {
         List<UUID> userIds = request == null || request.getUsers() == null
                 ? List.of()
-                : request.getUsers().stream().map(TaskAssignUsersRequestDto.UserRef::getUserId).toList();
+                : request.getUsers();
 
         return ResponseEntity.ok(taskService.assignTaskToUsers(taskId, userIds));
     }
@@ -69,9 +81,5 @@ public class TaskController {
     public Page<TaskResponseDto> getTasks(Pageable pageable) {
 
         return taskService.getTasks(pageable);
-    }
-
-    public void updateTask(UUID taskId) {
-        //todo
     }
 }

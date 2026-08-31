@@ -2,8 +2,6 @@ package com.example.demo.dto;
 
 import com.example.demo.entity.TaskPriority;
 import com.example.demo.entity.TaskStatus;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,25 +13,18 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskCreateRequestDto {
-
-    @NotBlank(message = "Title cannot be blank")
+public class TaskUpdateRequestDto {
     private String title;
 
-    @NotBlank(message = "Short description cannot be blank")
     private String shortDescription;
 
-    @NotBlank(message = "Description cannot be blank")
     private String description;
 
-    @NotNull(message = "Deadline is required")
     private LocalDate deadline;
 
-    @NotNull(message = "Status is required")
     private TaskStatus status;
 
-    @NotNull(message = "Priority is required")
     private TaskPriority priority;
 
-    private List<@NotNull(message = "User ID cannot be null") UUID> users;
+    private List<UUID> users;
 }

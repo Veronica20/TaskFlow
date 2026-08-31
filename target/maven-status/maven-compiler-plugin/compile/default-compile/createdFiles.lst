@@ -13,6 +13,7 @@ com/example/demo/entity/User.class
 com/example/demo/dto/UserUpdateRequestDto.class
 com/example/demo/config/SecurityConfig.class
 com/example/demo/entity/UserProfile.class
+com/example/demo/exception/TaskNotFoundException.class
 com/example/demo/service/JwtService.class
 com/example/demo/mapper/UserMapper.class
 com/example/demo/service/TokenBlacklistService.class
@@ -24,7 +25,6 @@ com/example/demo/dto/ProfileUpdateRequest.class
 com/example/demo/repository/UserRepository.class
 com/example/demo/exception/EmailAlreadyExistsException.class
 com/example/demo/repository/TaskRepository.class
-com/example/demo/dto/TaskAssignUsersRequestDto$UserRef.class
 com/example/demo/entity/LoginAttempt.class
 com/example/demo/security/CurrentUserResolver.class
 com/example/demo/mapper/RegisterMapper.class
@@ -46,6 +46,7 @@ com/example/demo/config/WebConfig.class
 com/example/demo/mapper/UserMapperImpl.class
 com/example/demo/repository/LoginAttemptRepository.class
 com/example/demo/mapper/TaskMapperImpl.class
+com/example/demo/dto/TaskUpdateRequestDto.class
 com/example/demo/entity/UserPreferences.class
 com/example/demo/config/AsyncConfig.class
 com/example/demo/dto/PreferencesResponse.class

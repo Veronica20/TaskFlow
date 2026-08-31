@@ -257,11 +257,14 @@ curl -X POST http://localhost:8080/api/tasks \
     "description": "Run the release checklist",
     "deadline": "2026-09-01",
     "status": "TODO",
-    "priority": "HIGH"
+    "priority": "HIGH",
+    "users": [
+      "11111111-1111-1111-1111-111111111111"
+    ]
   }'
 ```
 
-All six fields are required. `title`, `shortDescription`, and `description` must be nonblank.
+The first six fields are required. `title`, `shortDescription`, and `description` must be nonblank. `users` is optional; when supplied, it accepts active user UUIDs and assigns those users as part of task creation.
 
 ### List tasks
 
@@ -305,7 +308,7 @@ curl -X PUT http://localhost:8080/api/tasks/22222222-2222-2222-2222-222222222222
   -H 'Content-Type: application/json' \
   -d '{
     "users": [
-      {"userId": "11111111-1111-1111-1111-111111111111"}
+      "11111111-1111-1111-1111-111111111111"
     ]
   }'
 ```
